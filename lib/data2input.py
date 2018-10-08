@@ -70,3 +70,4 @@ if __name__ == '__main__':
     train_sentence_file = "sentences-sub-task1.txt"
     sentences = x.read_sentences(train_sentence_file)
     x.convert_text_to_input(sentences, max_len=100)
+    print("========== the word index and input sentences are generated. ============")
