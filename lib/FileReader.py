@@ -37,6 +37,8 @@ class FileReader:
             if line == "":
                 break
             data = line.strip("\n").split("\t")
+            data[0] = data[0].replace("“", "\"")
+            data[0] = data[0].replace("”", "\"").replace("…", "...")
 
             temp = len(data[0].split(" "))
             if temp > max_len:
@@ -113,3 +115,7 @@ if __name__ == '__main__':
     file1 = "labels-sub-task1.txt"
     file2 = "labels-sub-task2.txt"
     file3 = "labels-sub-task3.txt"
+
+    file_reader.write_label(label1, file1)
+    file_reader.write_label(label2, file2)
+    file_reader.write_label(label3, file3)
