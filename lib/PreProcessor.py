@@ -43,10 +43,22 @@ class PreProcessor:
     @staticmethod
     def clean_sentence(sentence=""):
 
-        sentence = sentence.replace('$', ' ')
+        sentence = sentence.replace('$', ' ').lower()
 
-        sentence = PreProcessor.remove_substr(sentence, 2, "@", "@user")
-        sentence = PreProcessor.remove_substr(sentence, 0, "https", "url")
+        sentence = PreProcessor.remove_substr(sentence, 1, "@", "<user>")
+        sentence = PreProcessor.remove_substr(sentence, 0, "https", "<url>")
+
+        while "!!" in sentence:
+            sentence = sentence.replace('!!', '!')
+
+        while "??" in sentence:
+            sentence = sentence.replace('??', '?')
+
+        sentence = sentence.replace('-', ' ')
+        sentence = sentence.replace('/', ' / ')
+
+        sentence = sentence.replace("......", '…').replace("....", '…').replace("...", '…').replace('..', '…')
+        sentence = sentence.replace("…", " … ")
 
         while "  " in sentence:
             sentence = sentence.replace('  ', ' ')
@@ -64,7 +76,7 @@ class PreProcessor:
 
 
 if __name__ == '__main__':
-    raw_file = "out.txt"
+    raw_file = "out3.txt"
     file = "sub1.txt"
 
     p = PreProcessor()
