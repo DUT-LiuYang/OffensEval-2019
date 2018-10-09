@@ -37,8 +37,7 @@ class FileReader:
             if line == "":
                 break
             data = line.strip("\n").split("\t")
-            data[0] = data[0].replace("“", "\"")
-            data[0] = data[0].replace("”", "\"").replace("…", "...")
+            data[0] = data[0].replace("“", "\"").replace("”", "\"")
 
             temp = len(data[0].split(" "))
             if temp > max_len:
